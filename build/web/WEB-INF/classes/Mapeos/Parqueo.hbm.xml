@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2017 01:13:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Parqueo" table="parqueo" catalog="parkiingcars" optimistic-lock="version">
+        <id name="idParqueo" type="java.lang.Integer">
+            <column name="idParqueo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="espacioparqueo" class="Modelos.Espacioparqueo" fetch="select">
+            <column name="EspacioParqueo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="promociones" class="Modelos.Promociones" fetch="select">
+            <column name="Promociones" />
+        </many-to-one>
+        <many-to-one name="vehiculo" class="Modelos.Vehiculo" fetch="select">
+            <column name="Vehiculo" not-null="true" />
+        </many-to-one>
+        <property name="fechaIngreso" type="string">
+            <column name="FechaIngreso" length="10" not-null="true" />
+        </property>
+        <property name="fechaSalida" type="string">
+            <column name="FechaSalida" length="10" not-null="true" />
+        </property>
+        <property name="horaIngreso" type="string">
+            <column name="HoraIngreso" length="8" not-null="true" />
+        </property>
+        <property name="horaSalida" type="string">
+            <column name="HoraSalida" length="8" not-null="true" />
+        </property>
+        <set name="tickets" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Parqueo" />
+            </key>
+            <one-to-many class="Modelos.Ticket" />
+        </set>
+    </class>
+</hibernate-mapping>

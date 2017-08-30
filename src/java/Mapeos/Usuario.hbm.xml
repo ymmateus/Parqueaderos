@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2017 01:13:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Usuario" table="usuario" catalog="parkiingcars" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="idUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoDocumento" type="string">
+            <column name="TipoDocumento" length="16" not-null="true" />
+        </property>
+        <property name="documento" type="int">
+            <column name="Documento" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="60" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="Apellido" length="60" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="string">
+            <column name="FechaNacimiento" length="10" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="50" not-null="true" />
+        </property>
+        <property name="celular" type="int">
+            <column name="Celular" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="30" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="14" not-null="true" />
+        </property>
+        <set name="tickets" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Ticket" />
+        </set>
+        <set name="parqueaderoses" table="parqueaderos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Parqueaderos" />
+        </set>
+        <set name="serviciostickets" table="serviciosticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Serviciosticket" />
+        </set>
+        <set name="turnos" table="turno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Usuario" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Turno" />
+        </set>
+    </class>
+</hibernate-mapping>

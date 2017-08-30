@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2017 01:13:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Ticket" table="ticket" catalog="parkiingcars" optimistic-lock="version">
+        <id name="idTicket" type="java.lang.Integer">
+            <column name="idTicket" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="parqueaderos" class="Modelos.Parqueaderos" fetch="select">
+            <column name="Parqueaderos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="parqueo" class="Modelos.Parqueo" fetch="select">
+            <column name="Parqueo" />
+        </many-to-one>
+        <many-to-one name="serviciosticket" class="Modelos.Serviciosticket" fetch="select">
+            <column name="ServiciosTicket" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Modelos.Usuario" fetch="select">
+            <column name="Usuario" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="string">
+            <column name="Fecha" length="10" not-null="true" />
+        </property>
+        <property name="hora" type="string">
+            <column name="Hora" length="8" not-null="true" />
+        </property>
+        <property name="valorTiempo" type="long">
+            <column name="ValorTiempo" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="Observaciones" length="65535" not-null="true" />
+        </property>
+        <property name="puntos" type="long">
+            <column name="Puntos" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="10" not-null="true" />
+        </property>
+        <property name="precioTotal" type="long">
+            <column name="PrecioTotal" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

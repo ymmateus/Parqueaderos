@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2017 01:13:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Cliente" table="cliente" catalog="parkiingcars" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoDocumento" type="string">
+            <column name="TipoDocumento" length="16" not-null="true" />
+        </property>
+        <property name="documento" type="long">
+            <column name="Documento" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="60" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="Apellido" length="60" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="Telefono" length="60" not-null="true" />
+        </property>
+        <property name="codigo" type="long">
+            <column name="Codigo" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <set name="vehiculos" table="vehiculo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Cliente" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Vehiculo" />
+        </set>
+    </class>
+</hibernate-mapping>

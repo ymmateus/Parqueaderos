@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/08/2017 01:13:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Promociones" table="promociones" catalog="parkiingcars" optimistic-lock="version">
+        <id name="idPromociones" type="java.lang.Integer">
+            <column name="idPromociones" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoPromocion" type="string">
+            <column name="TipoPromocion" length="8" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="65535" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <set name="parqueos" table="parqueo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Promociones" />
+            </key>
+            <one-to-many class="Modelos.Parqueo" />
+        </set>
+        <set name="serviciostickets" table="serviciosticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Promociones" />
+            </key>
+            <one-to-many class="Modelos.Serviciosticket" />
+        </set>
+    </class>
+</hibernate-mapping>
